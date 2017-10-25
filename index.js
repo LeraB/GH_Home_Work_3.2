@@ -1,5 +1,5 @@
 // beginning
-function Animal() {
+function myAnimal() {
     this.Name = 'Tamaguchi';
     this.heppines = Math.floor(Math.random() * 10);
     this.cheerfulness = Math.floor(Math.random() * 10);
@@ -11,15 +11,7 @@ function Animal() {
     this.eat = function () {
         console.log('Am-am-am');
         this.satiety += Math.floor(Math.random() * 10);
-        if (this.satiety > 100) {
-            this.satiety = 100;
-            console.log('I am not hungry. We went better lying down!');
-        }
-        if (this.satiety < 0) {
-            this.satiety = 0;
-            console.log('I am hungry!!!!!!!!!');
-        }
-
+        healthy();
         return this.satiety;
     }
 
@@ -27,15 +19,8 @@ function Animal() {
         this.heppines += Math.floor(Math.random() * 10);
         this.satiety -= Math.floor(Math.random() * 10);
         this.cheerfulness -= Math.floor(Math.random() * 10);
+        healthy();
 
-        if (this.heppines > 100) {
-            this.heppines = 100;
-            console.log('I want to go home!');
-        }
-        if (this.heppines < 0) {
-            this.heppines = 0;
-            console.log('Sad at home, went for a walk.');
-        }
         return this.heppines;
     },
 
@@ -44,15 +29,8 @@ function Animal() {
             this.cheerfulness += Math.floor(Math.random() * 10);
             this.heppines -= Math.floor(Math.random() * 10);
             this.satiety -= Math.floor(Math.random() * 10);
+            healthy();
 
-            if (this.cheerfulness > 100) {
-                this.cheerfulness = 100;
-                console.log('I\'m full of strength. Let\'s have fun');
-            }
-            if (this.cheerfulness < 0) {
-                this.cheerfulness = 0;
-                console.log('I want to go to bed!');
-            }
             return this.cheerfulness;
         }
 
@@ -60,33 +38,18 @@ function Animal() {
         this.cleanness += Math.floor(Math.random() * 10);
         this.satiety -= Math.floor(Math.random() * 10);
 
-        if (this.cleanness > 100) {
-            this.cleanness = 100;
-            console.log('I do not want to swim. ((');
-        }
-        if (this.cleanness < 0) {
-            this.cleanness = 0;
-            console.log('I\'m dirty. Maybe we\'ll fix it?');
-        }
+        healthy();
         return this.cleanness;
     };
 
     this.goToTheGym = function () {
-        this.cleanness -= Math.floor(Math.random() * 10);
+        this.cleanness -= 1000; //Math.floor(Math.random() * 10);
         this.satiety -= Math.floor(Math.random() * 10);
         this.cheerfulness -= Math.floor(Math.random() * 10);
         this.knowledge -= Math.floor(Math.random() * 10);
         this.muscle += Math.floor(Math.random() * 10);
 
-        if (this.muscle > 100) {
-            this.muscle = 100;
-            console.log('I\'m already very strong, there is no sense to go to the gym');
-        }
-        if (this.muscle < 0) {
-            this.muscle = 0;
-            console.log('GO TO GYM,');
-        }
-
+        healthy();
         return this.muscle;
     };
 
@@ -95,19 +58,19 @@ function Animal() {
         this.knowledge += Math.floor(Math.random() * 10);
         this.satiety -= Math.floor(Math.random() * 10);
 
-        if (this.muscle < 0) {
-            this.muscle = 0;
-            console.log('We should have already read something.');
-        }
+        this.healthy();
+
         return this.knowledge;
     };
 
     this.free = function () {
         return console.log('Dobby is free!!!!!');
+
     }
     this.help = function () {
-        var help_string = "Let me help you. \n " +
-            "If I am hungry, then use the command myanimal.eat() \n " +
+        var help_string
+        this.help_string = "Let me help you. \n " +
+            "If I am hungry, then use the command myanimal.eat()" + "\n " +
             "If I'm sad, then use the command myanimal.walk() \n" +
             "If I'm tired, then use the command myanimal.sleep() \n" +
             "If I'm dirty, then use the command myanimal.cleanliness() \n" +
@@ -127,7 +90,55 @@ function Animal() {
     }
 }
 
+function healthy() {
+    if (myanimal.satiety > 100) {
+        myanimal.satiety = 100;
+        console.log('I am not hungry. We went better lying down!');
+    }
+    if (myanimal.satiety < 0) {
+        myanimal.satiety = 0;
+        console.log('I am hungry!!!!!!!!!');
+    }
+    if (myanimal.muscle < 0) {
+        myanimal.muscle = 0;
+        console.log('We should have already read something.');
+    }
+    if (myanimal.cleanness > 100) {
+        myanimal.cleanness = 100;
+        console.log('I do not want to swim. ((');
+    }
+    if (myanimal.cleanness < 0) {
+        myanimal.cleanness = 0;
+        console.log('I\'m dirty. Maybe we\'ll fix it?');
+    }
+    if (myanimal.cheerfulness > 100) {
+        myanimal.cheerfulness = 100;
+        console.log('I\'m full of strength. Let\'s have fun');
+    }
+    if (myanimal.cheerfulness < 0) {
+        myanimal.cheerfulness = 0;
+        console.log('I want to go to bed!');
+    }
+    if (myanimal.muscle > 100) {
+        myanimal.muscle = 100;
+        console.log('I\'m already very strong, there is no sense to go to the gym');
+    }
+    if (myanimal.muscle < 0) {
+        myanimal.muscle = 0;
+        console.log('GO TO GYM,');
+    }
 
-var myanimal = new Animal();
+    if (myanimal.heppines > 100) {
+        myanimal.heppines = 100;
+        console.log('I want to go home!');
+    }
+    if (myanimal.heppines < 0) {
+        myanimal.heppines = 0;
+        console.log('Sad at home, went for a walk.');
+    }
+
+}
+
+var myanimal = new myAnimal();
 console.log('Hello!!! I am Tamaguchi')
 
