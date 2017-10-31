@@ -157,5 +157,4 @@ function healthy() {
 }
 
 var myanimal = new myAnimal();
-console.log('Hello!!! I am Tamaguchi')
-
+console.log('Hello!!! I am Tamaguchi');
